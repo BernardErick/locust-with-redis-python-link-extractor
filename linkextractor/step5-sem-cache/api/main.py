@@ -24,7 +24,8 @@ def api(url):
     if not jsonlinks:
         links = extract_links(url)
         jsonlinks = json.dumps(links, indent=2)
-        redis_conn.set(url, jsonlinks)
+        #redis_conn.set(url, jsonlinks)
+        #Não vai salvar no cache =)
 
     response = app.response_class(
         status=200,

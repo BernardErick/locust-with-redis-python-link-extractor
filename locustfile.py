@@ -28,6 +28,9 @@ class WebsiteUser(HttpUser):
 
         # Verifique se o arquivo "results_stats.csv" existe na raiz do projeto
         if os.path.exists("results_stats.csv"):
+            #print(self.environment.parsed_options)
             num_users = str(self.environment.parsed_options.num_users)
-            csv_name = num_users + "_users_for_results_stats.csv"
+            spawn_rate = str(self.environment.parsed_options.spawn_rate)
+            run_time = str(self.environment.parsed_options.run_time)
+            csv_name = num_users + "_users_for_spawn_rate_"+ spawn_rate+"_run_time_"+run_time+"_results_stats.csv"
             os.rename("results_stats.csv", csv_name)

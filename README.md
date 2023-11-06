@@ -43,6 +43,61 @@ Realizar testes de desempenho com as duas versões do serviço de extração de 
 
 
 - `locust -f locustfile.py --csv=results --headless -u 100 --run-time 60`
+## Versão automatica (Novo) (Recomendado)
+- Agora a nova versão automatica você gera todos os novos arquivos que precisa nos cenarios de testes customizados no código.
+- Em vez de rodar algo como `locust -f locustfile.py --csv=results --headless -u 100 --run-time 60`
+- Você pode rodar dentro do venv o seguinte comando
+- `python3 auto.py -type py --cache`
+- `python3 auto.py -type py`
+- ou
+- `python3 auto.py -type rb --cache`
+- `python3 auto.py -type rb`
+- Lembre-se de usar o docker-compose do Python quando for a aplicação do python e indicar no -type py
+-Lembre-se de usar o docker-compose do Ruby quando for a aplicação do ruby e indicar no -type rb
+- Com isso as duas versões serão geradas, 3 casos para o python e 3 casos para o ruby
+- As alterações com cache deverão ser feitas na mão! (Por enquanto)
 
 ## Aplicações
 - Locust: http://localhost:8089
+
+
+## Equipe
+- Erick Bernardo
+- Marcelo Barbosa
+- Leonardo Pontes
+
+## Ferramenta utilizada: Locust
+
+- Uma ferramenta de teste de carga de código aberto.
+- Defina o comportamento do usuário com código Python e enxameie seu sistema com milhões de usuários simultâneos.
+- Defina o comportamento do usuário no código
+Não há necessidade de UIs desajeitadas ou XML inchado. Apenas código simples.
+- Distribuído e escalável
+O Locust suporta a execução de testes de carga distribuídos em diversas máquinas e, portanto, pode ser usado para simular milhões de usuários simultâneos.
+- Comprovado e testado em batalha
+Locust tem sido usado para simular milhões de usuários simultâneos. Battlelog, o aplicativo da web para os jogos Battlefield, é testado em carga usando o Locust, então pode-se realmente dizer que o Locust é testado em batalha;).
+
+## Cenários de testes
+- Para todos os cenários foram usados as seguintes URLS, no tempo de 3 min de duração:
+```python
+    urls_to_extract = [
+        "https://brazino777.com/pt/",
+        "https://www.google.com",
+        "https://www.facebook.com",
+        "https://www.youtube.com",
+        "https://www.twitter.com",
+        "https://www.instagram.com",
+        "https://www.linkedin.com",
+        "https://www.github.com",
+        "https://www.stackoverflow.com",
+        "https://www.wikipedia.org",
+    ]
+```
+- A variação do spawn rate se deu em consideração a quantidade de usuários para que o máximo de usuários fosse atingido rapidamente sem afetar muito o indice de falhas, baseado na maquina usada.
+
+1) Primeiro cenário: 100 usuários com spawn rate de 10
+ 
+- Comando utilizado:
+- `locust -f locustfile.py --csv=results --headless -u 100 -r 10 --run-time 180`
+
+

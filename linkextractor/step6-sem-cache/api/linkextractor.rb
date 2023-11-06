@@ -26,7 +26,8 @@ get "/api/*" do
   if jsonlinks.nil?
     cache_status = "MISS"
     jsonlinks = JSON.pretty_generate(extract_links(url))
-    redis.set(url, jsonlinks)
+    #redis.set(url, jsonlinks)
+    #Não vai salvar no cache =)
   end
 
   cache_log.puts "#{Time.now.to_i}\t#{cache_status}\t#{url}"
